@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Using API</title>
+</head>
+<style>
+    body {
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .tempCard{
+        background-color: rgb(255, 255, 255);
+        padding: 50px;
+        border-radius: 10px;
+    }
+
+    .tempCard img {
+        border-radius: 50%;
+        margin-left: 50px;
+
+    }
+
+    #weather{
+        text-align: center;
+    }
+
+</style>
+<body>
+    <div class="tempCard">
+    <h2>Weather in New Delhi</h2>
+    <img src="https://img.freepik.com/premium-vector/green-temperature-temperature-symbol-with-word-it_1076610-93221.jpg" height="100px" alt="TemperatureImage">
+    <p id="weather"></p>
+    </div>
+    <script>
+        window.onload = async function() {
+            let Weather = await fetch("https://api.open-meteo.com/v1/forecast?latitude=28.769730228085432&longitude=77.51407470395903&current_weather=true");
+            let WeatherData = await Weather.json();
+            let temperature = WeatherData.current_weather.temperature
+            document.getElementById("weather").innerHTML = "Temperature is " +  "<b>" + temperature + "</b>" + "°C";
+        }
+    </script>
+</body>
+</html>
