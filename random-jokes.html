@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke</title>
+</head>
+<style>
+    body {
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    h3{
+        text-align: center;
+    }
+
+    .jokeCard{
+        background-color: white;
+        padding: 50px;
+        border-radius: 10px;
+    }
+</style>
+<body>
+    <div class="jokeCard">
+    <H3>Today's Random Joke</H3>
+    <p id="joke"></p>
+</div>
+    <script>
+        window.onload = async function(){
+            let joke = await fetch("https://v2.jokeapi.dev/joke/Any");
+            let jokeData = await joke.json();
+            let para = document.getElementById("joke");
+            para.innerHTML = jokeData.setup + "<br>";
+            para.innerHTML += jokeData.delivery;
+        }
+    </script>
+</body>
+</html>
